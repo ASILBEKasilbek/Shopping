@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-primary text-center">Mahsulotlar</h2>
+
+        <!-- Qidirish va filtrlash shakli -->
+        <form method="get" class="d-flex gap-2 mb-4">
+            <input type="text" name="q" class="form-control" placeholder="Qidirish..." value="{{ query }}">
+            <select name="category" class="form-select">
+                <option value="">Barcha kategoriyalar</option>
+                {% for cat in categories %}
+                    <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+            <input type="number" name="min_price" class="form-control" placeholder="Min narx" value="{{ min_price }}">
+            <input type="number" name="max_price" class="form-control" placeholder="Max narx" value="{{ max_price }}">
+            <button type="submit" class="btn btn-primary">Qidirish</button>
+        </form>
+
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">{{ product.name }}</a>
+                            </h5>
+                            <p class="text-success">Narx: ${{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center text-muted">Hech qanday mahsulot topilmadi.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

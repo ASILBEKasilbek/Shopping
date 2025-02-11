@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card shadow p-4">
+            <h2 class="text-center mb-4">Yetkazib berish manzillari</h2>
+            {% if addresses %}
+                <ul class="list-group">
+                    {% for address in addresses %}
+                        <li class="list-group-item">
+                            <strong>{{ address.full_name }}</strong> - {{ address.city }}, {{ address.street }}
+                            <br><span class="text-muted">Telefon:</span> {{ address.phone }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-center text-muted">Hali manzil kiritilmagan.</p>
+            {% endif %}
+            <div class="text-center mt-3">
+                <a href="{% url 'add_address' %}" class="btn btn-primary">Yangi manzil qo‘shish</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card shadow p-4">
+            <h2 class="text-center mb-4">Savatcha</h2>
+            {% if cart_items %}
+                <ul class="list-group">
+                    {% for item in cart_items %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>{{ item.product.name }}</strong> - {{ item.quantity }} dona - ${{ item.total_price }}</span>
+                            <a href="{% url 'remove_from_cart' item.id %}" class="text-danger">❌</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="text-center mt-3"><strong>Jami narx:</strong> ${{ total_price }}</p>
+                <div class="text-center">
+                    <a href="{% url 'checkout' %}" class="btn btn-success">Buyurtmani rasmiylashtirish</a>
+                </div>
+            {% else %}
+                <p class="text-center text-muted">Savatcha bo‘sh.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card shadow p-4">
+            <h2 class="text-center mb-4">Buyurtmalarim</h2>
+            {% for order in orders %}
+                <div class="card mb-3 p-3 shadow-sm">
+                    <h3 class="text-primary">Buyurtma #{{ order.id }} - ${{ order.total_price }}</h3>
+                    <p class="text-muted">Sana: {{ order.created_at }}</p>
+                    <ul class="list-group">
+                        {% for item in order.items.all %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ item.product.name }} - {{ item.quantity }} dona</span>
+                                <span class="badge bg-success">${{ item.price }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% empty %}
+                <p class="text-center text-muted">Sizda hali buyurtmalar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+# Python specific
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+env/
+*.env
+*.venv
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+
+# Database
+*.sqlite3
+*.db
+
+# Django specific
+*.pot
+*.pyc
+.DS_Store
+
+# Static and media files
+staticfiles/
+media/
+
+# Environment variables
+.env
+debug.log
+
+# Migrations (optional, if you don't want to track them)
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Ignore compiled translations
+*.mo

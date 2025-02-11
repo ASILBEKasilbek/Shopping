@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card shadow p-4 text-center">
+            <h2 class="text-success">To‘lov muvaffaqiyatli amalga oshirildi! 🎉</h2>
+            <p class="text-muted">Buyurtmangiz qabul qilindi. Rahmat!</p>
+            <a href="{% url 'order_history' %}" class="btn btn-primary mt-3">Buyurtmalarimni ko‘rish</a>
+        </div>
+    </div>
+{% endblock %}
